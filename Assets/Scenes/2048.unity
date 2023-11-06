@@ -3251,12 +3251,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   board: {fileID: 1764780440}
   gameOver: {fileID: 1432230658}
-  gameWin: {fileID: 0}
+  gameWin: {fileID: 916954033}
   scoreText: {fileID: 1743044324}
   hiscoreText: {fileID: 894870132}
   gameOvermusic: {fileID: 844692842}
   victorymusic: {fileID: 1748308030}
-  gameWinCanvas: {fileID: 0}
+  gameWinCanvas: {fileID: 916954031}
 --- !u!4 &1527696443
 Transform:
   m_ObjectHideFlags: 0
