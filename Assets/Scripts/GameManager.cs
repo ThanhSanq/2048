@@ -6,13 +6,20 @@ public class GameManager : MonoBehaviour
 {
     public TileBoard board;
     public CanvasGroup gameOver;
+    public CanvasGroup gameWin;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI hiscoreText;
+
+    public AudioSource gameOvermusic;
+    public AudioSource victorymusic;
+
+    public GameObject gameWinCanvas;
 
     private int score;
 
     private void Start()
     {
+        gameWinCanvas.SetActive(false);
         NewGame();
     }
 
@@ -25,8 +32,10 @@ public class GameManager : MonoBehaviour
         
         gameOver.alpha = 0f;
         gameOver.interactable = false;
+        gameWin.alpha = 0f;
+        gameWin.interactable = false;
 
-        
+
         board.ClearBoard();
         board.CreateTile();
         board.CreateTile();
@@ -35,6 +44,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        gameOvermusic.Play();
         board.enabled = false;
         gameOver.interactable = true;
 
@@ -87,4 +97,18 @@ public class GameManager : MonoBehaviour
         return PlayerPrefs.GetInt("hiscore", 0);
     }
 
+    public void Continue()
+    {
+        gameWinCanvas.SetActive(false);
+        gameWin.interactable = false;
+        board.enabled = true;
+    }
+    public void Victory()
+    {
+        gameWinCanvas.SetActive(true);
+        board.enabled = false;
+        gameWin.interactable = true;
+        victorymusic.Play();
+        StartCoroutine(Fade(gameWin, 1f, 1f));
+    }
 }
