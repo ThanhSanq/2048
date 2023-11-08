@@ -25,21 +25,19 @@ public class GameManager : MonoBehaviour
 
     public void NewGame()
     {
-        
+        gameWinCanvas.SetActive(false);
         SetScore(0);
         hiscoreText.text = LoadHiscore().ToString();
-
-        
         gameOver.alpha = 0f;
         gameOver.interactable = false;
         gameWin.alpha = 0f;
         gameWin.interactable = false;
 
-
         board.ClearBoard();
         board.CreateTile();
         board.CreateTile();
         board.enabled = true;
+
     }
 
     public void GameOver()
@@ -97,12 +95,7 @@ public class GameManager : MonoBehaviour
         return PlayerPrefs.GetInt("hiscore", 0);
     }
 
-    public void Continue()
-    {
-        gameWinCanvas.SetActive(false);
-        gameWin.interactable = false;
-        board.enabled = true;
-    }
+   
     public void Victory()
     {
         gameWinCanvas.SetActive(true);
@@ -110,5 +103,12 @@ public class GameManager : MonoBehaviour
         gameWin.interactable = true;
         victorymusic.Play();
         StartCoroutine(Fade(gameWin, 1f, 1f));
+    }
+
+    public void Continue()
+    {
+        gameWinCanvas.SetActive(false);
+        gameWin.interactable = false;
+        board.enabled = true;
     }
 }

@@ -131,10 +131,15 @@ public class TileBoard : MonoBehaviour
         a.Merge(b.cell);
 
         int index = Mathf.Clamp(IndexOf(b.state) + 1, 0, tileStates.Length - 1);
-        int number = b.number * 2;
-        //TileState newState = tileStates[index];
+        int number = b.number * 2;        
 
         b.SetState(tileStates[index], number);
+
+        if (number == 2048)
+        {
+            gameManager.Victory();
+        }
+
         gameManager.IncreaseScore(number);
     }
 
